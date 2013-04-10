@@ -1,41 +1,42 @@
 
 public class Palindromes {
 
-	
 	public static void returnPalyndroms(String str){
-		StringBuilder br = new StringBuilder();
+		StringBuilder palindrome = new StringBuilder();
+		String lastPalindrome = "";
 		int startIndex;
 		int lastIndex;
 		char ch;
 		
 		for (int i = 0; i < str.length(); i++) {
 			startIndex = i;
-			ch = str.charAt(i);
+			ch = Character.toLowerCase(str.charAt(i));
+			
 			lastIndex = str.lastIndexOf(ch, str.length()-1);
 			
 			while(startIndex < lastIndex){
-				
 				String currentString = str.substring(startIndex, lastIndex+1);
-				//System.out.println(currentString);
+			
 				for (int j = currentString.length()-1; j >= 0; j--) {
-					br.append(currentString.charAt(j));
+					palindrome.append(currentString.charAt(j));
 				}
-				//System.out.println(br);
-				if(currentString.equals(br.toString())){
-					System.out.println(currentString);
+				
+				if((currentString.toLowerCase().equals(palindrome.toString().toLowerCase())) &&
+					(!lastPalindrome.toLowerCase().contains(currentString.toLowerCase()))) {
 					
+					lastPalindrome = currentString;
+					System.out.println(currentString);
 				}
-				br.setLength(0);
+				palindrome.setLength(0);
 				lastIndex = str.lastIndexOf(ch, lastIndex - 1);
 				
 			}
-			
 			
 		}
 		
 	}
 	public static void main(String[] args) {
-		returnPalyndroms("Thisisalabalanicaneven"); 
+		returnPalyndroms("ThisisAlabalanicaneven"); 
 		
 	}
 }
