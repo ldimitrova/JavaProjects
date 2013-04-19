@@ -26,10 +26,23 @@ public class ReservationBook {
 		reservations.add(reservation);
 	}
 
-	public List<Reservation> getAllReservations() {
+	public List<Reservation> getAllReservations() { 
 		return reservations;
 		
 		
+	}
+
+
+	public void deleteReservation(Date reservationDate) {
+		Reservation reservationForDelete = null;
+		for (Reservation currentReservation : reservations) {
+			Date currentReservationDate = currentReservation.getReservationDate();
+			if (currentReservationDate.compareTo(reservationDate) == 0) {
+				reservationForDelete = currentReservation;
+			} 
+				
+		}
+		reservations.remove(reservationForDelete);
 	}
 	
 }

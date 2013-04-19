@@ -65,5 +65,18 @@ public class TestReservationBook {
 		assertFalse("Overtime Reservation is trying to be added", reservationBook.getAllReservations().contains(overtimeReservation));
 	}
 	
+	@Test
+	public void testDeleteReservation() throws Exception {
+		ReservationBook reservationBook = new ReservationBook(); 
+		String reservationDate="01.02.2013 12:00";
+		Date resDate = Reservation.SDF.parse(reservationDate);
+		Client client = new Client("Krasimira", "Evgenieva", "0898444444");
+		Reservation reservation = new Reservation(client,ServiceType.MAN_HAIRCUT,resDate);
+		reservationBook.addReservation(reservation);
+		reservationBook.deleteReservation(resDate);
+		List<Reservation> allReservations = reservationBook.getAllReservations();
+		assertFalse("This reservation doesn't exist", allReservations.contains(reservation));
+		
+	}
 	
 }
