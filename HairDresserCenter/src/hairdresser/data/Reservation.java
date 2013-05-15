@@ -1,13 +1,46 @@
 package hairdresser.data;
+
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="RESERVATION")
 public class Reservation {
 	
 	public static final String SIMPLE_DATE_FORMAT = "dd.MM.yyyy HH:mm";
+	  
+    @Id
+    @Column(name = "RESERV_ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long resId;
+
+//    @Column(name = "CLIENT_ID")
+//    private long clientId;
+    
+    @ManyToOne(optional=false)
+    @JoinColumn(name="CLIENT_ID",referencedColumnName="CLIENT_ID",  insertable = false, updatable = false)
 	private Client client;
-	private ServiceType service;
+	
+	//private ServiceType service;
+	
+//    public void setClientId(long id) {
+//		this.clientId = id;
+//	}
+
+    
+
+	@Column(name="RESERVATION_DATE")
 	private Date reservationDate;
 	
 	public static final SimpleDateFormat SDF =  new SimpleDateFormat(SIMPLE_DATE_FORMAT);
@@ -15,7 +48,7 @@ public class Reservation {
 	public Reservation(Client client, ServiceType service, Date reservationDate) {
 
 		this.client = client;
-		this.service = service;
+		//this.service = service;
 		this.reservationDate = reservationDate;
 	}
 
@@ -36,7 +69,7 @@ public class Reservation {
  		this.client = client;
  	}
  	
-	public ServiceType getService() {
+	/*public ServiceType getService() {
 		return service;
 	}
 
@@ -47,7 +80,7 @@ public class Reservation {
 		else if(serviceCode == 2) {
 			this.service = new WomanHaircut();
 		}
-	}
+	}*/
 	
 	public Date getReservationDate() {
 		return reservationDate;
@@ -63,7 +96,7 @@ public class Reservation {
 		if (obj instanceof Reservation) {
 			Reservation testReservation  = (Reservation) obj;
 			result = this.client.equals(testReservation.getClient());
-			result&= this.service.equals(testReservation.getService());
+			//result&= this.service.equals(testReservation.getService());
 			result&= this.reservationDate.equals(testReservation.getReservationDate());
 		}
 		
@@ -79,7 +112,7 @@ public class Reservation {
 	    result.append(this.getClient().getLastName() + " ");
 	    result.append(this.getClient().getPhone() + " ");
 	  	result.append(this.getReservationDate() + " ");
-	    result.append(this.getService().getServiceName());
+	   // result.append(this.getService().getServiceName());
 	  
 	    return result.toString();
 	}

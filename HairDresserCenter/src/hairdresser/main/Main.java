@@ -44,9 +44,9 @@ public class Main {
 	        			String reservationDate = scanner.nextLine();
 	        			reservation.setReservationDate(Reservation.SDF.parse(reservationDate));
 	        		
-	        			System.out.println("Insert service code: MAN_HAIRCUT - 1/ WOMAN_HAIRCUT - 2");
+	        		/*	System.out.println("Insert service code: MAN_HAIRCUT - 1/ WOMAN_HAIRCUT - 2");
 	        			int serviceType = scanner.nextInt();
-	        			reservation.setService(serviceType);
+	        			reservation.setService(serviceType);*/
 	        			
 	        			try{
 	        				reservationBook.addReservation(reservation);
