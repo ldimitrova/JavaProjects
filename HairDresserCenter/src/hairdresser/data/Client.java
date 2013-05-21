@@ -31,9 +31,10 @@ public class Client {
 	@Column(name="PHONE")
 	private String phone;
 	
+	@OneToMany(cascade = CascadeType.REFRESH,mappedBy="client",targetEntity=Reservation.class,fetch=FetchType.EAGER)
 	private Collection<Reservation> reservations; 
 	
-	@OneToMany(cascade = CascadeType.ALL,mappedBy="client",targetEntity=Reservation.class,fetch=FetchType.EAGER)
+	
 	public Collection<Reservation> getReservations() {
 		return reservations;
 	}
@@ -47,6 +48,9 @@ public class Client {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phone = phone;
+	}
+	public Client() {
+		
 	}
 
 	public String getFirstName() {

@@ -23,8 +23,12 @@ public class Main {
 			System.out.println("Selection: "); 
 
 			Scanner scanner = new Scanner (System.in);
+			while (!scanner.hasNextInt()) {
+				System.out.println("That's not a number!");
+				scanner.nextLine();
+			}
 			
-			int selection=Integer.parseInt(scanner.nextLine());     
+			int selection=Integer.parseInt(scanner.nextLine()); 
 			Reservation reservation = new Reservation();
 		
 			switch (selection){
@@ -44,9 +48,9 @@ public class Main {
 	        			String reservationDate = scanner.nextLine();
 	        			reservation.setReservationDate(Reservation.SDF.parse(reservationDate));
 	        		
-	        		/*	System.out.println("Insert service code: MAN_HAIRCUT - 1/ WOMAN_HAIRCUT - 2");
+	        			System.out.println("Insert service code: MAN_HAIRCUT - 1/ WOMAN_HAIRCUT - 2");
 	        			int serviceType = scanner.nextInt();
-	        			reservation.setService(serviceType);*/
+	        			reservation.setService(serviceType);
 	        			
 	        			try{
 	        				reservationBook.addReservation(reservation);
@@ -81,3 +85,4 @@ public class Main {
 		MainMenu();
 	}
 }
+
